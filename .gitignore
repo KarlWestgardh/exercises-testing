@@ -26,7 +26,7 @@ hs_err_pid*
 # End of https://www.gitignore.io/api/java
 
 ### VisualStudioCode ###
-.vscode/*
+*.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
