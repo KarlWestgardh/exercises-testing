@@ -13,12 +13,19 @@ import junit.framework.TestCase;
  */
 public class RecipeBookTest extends TestCase {
 
+	private CoffeeMaker cm;
+
 	@BeforeEach
-	protected void setUp() throws Exception {
+	public void setUp() {
+		cm = new CoffeeMaker();
+
 		
+
+		super.setUp();		
 	}
 	
-	public void testAddInventory() {
+	@Test
+	public void testAddRecipe() {
 		try {
 			// success
 		} catch (InventoryException e) {
@@ -26,12 +33,9 @@ public class RecipeBookTest extends TestCase {
 		}
 	}
 	
-	public void testAddInventoryException() {
-		try {
-			//fail
-		} catch (InventoryException e) {
-			//success
-		}
+	@AfterEach
+	public void tearDown() {
+
 	}
 
 }

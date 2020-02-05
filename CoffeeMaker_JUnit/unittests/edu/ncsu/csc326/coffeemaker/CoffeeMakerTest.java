@@ -1,6 +1,5 @@
 package edu.ncsu.csc326.coffeemaker;
 
-import org.junit.*;
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
 import junit.framework.TestCase;
 
@@ -10,7 +9,6 @@ import junit.framework.TestCase;
  *
  * Unit tests for CoffeeMaker class.
  */
-@Test
 public class CoffeeMakerTest extends TestCase {
 	
 	private CoffeeMaker cm;
@@ -19,7 +17,6 @@ public class CoffeeMakerTest extends TestCase {
 	private Recipe r3;
 	private Recipe r4;
 
-	@Test
 	protected void setUp() throws Exception {
 		cm = new CoffeeMaker();
 		
