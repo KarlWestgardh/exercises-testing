@@ -11,8 +11,9 @@ import junit.framework.TestCase;
  *
  * Unit tests for Main Functionality
  */
-public class MainTest extends TestCase {
+public class RecipeBookTest extends TestCase {
 
+	@BeforeEach
 	protected void setUp() throws Exception {
 		
 	}
