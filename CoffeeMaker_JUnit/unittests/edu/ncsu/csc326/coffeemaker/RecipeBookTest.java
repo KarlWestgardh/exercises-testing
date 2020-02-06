@@ -48,7 +48,7 @@ public class RecipeBookTest extends TestCase {
 		// add recipe to recipe book
 		cm.addRecipe(r1);
 
-		// check if recipe is contained within the recipe book
+		// Oracle: check if recipe is contained within the recipe book
 		assertTrue("Recipe is in the list", Arrays.asList(recipeBook).contains(r1));
 	}
 
@@ -61,7 +61,7 @@ public class RecipeBookTest extends TestCase {
 		// add same recipe again
 		cm.addRecipe(r1);
 
-		// iterate over the recipe book for duplicates
+		// Oracle: iterate over the recipe book for duplicates
 		for (Recipe recipe : recipeBook) {
 			// check if there is duplicate recipes by adding each recipe into the hashset
 			// (does not allow duplicates)
@@ -82,7 +82,7 @@ public class RecipeBookTest extends TestCase {
 		// delete recipe from recipe book from first position
 		cm.deleteRecipe(0);
 
-		// check if recipe is removed from the list from the position specified
+		// Oracle: Check if recipe is removed from the list from the position specified
 		assertNull("Recipe is not in the list", recipeBook[0]);
 	}
 

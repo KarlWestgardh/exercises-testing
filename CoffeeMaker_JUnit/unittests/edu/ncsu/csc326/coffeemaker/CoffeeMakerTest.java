@@ -62,6 +62,7 @@ public class CoffeeMakerTest extends TestCase {
 	public void testAddInventory() {
 		try {
 			cm.addInventory("4","7","0","9");
+			//update this to check that the inventory is actually updated
 		} catch (InventoryException e) {
 			fail("InventoryException should not be thrown");
 		}
@@ -74,6 +75,10 @@ public class CoffeeMakerTest extends TestCase {
 		} catch (InventoryException e) {
 			//success if thrown
 		}
+	}
+
+	public void testCheckInventory(){
+		
 	}
 	
 	public void testMakeCoffee() {
