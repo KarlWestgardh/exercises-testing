@@ -1,7 +1,8 @@
 package edu.ncsu.csc326.coffeemaker;
 
-import junit.framework.TestCase;
-import java.util.Arrays;
+//import JUNIT 5
+import org.junit.*;
+import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
 import java.util.*;
 
 /**
@@ -12,19 +13,32 @@ import java.util.*;
  *
  *         Unit tests for Main Functionality
  */
-public class InventoryTest extends TestCase {
+public class InventoryTest{
 
-	private CoffeeMaker cm;
+	private Inventory inv;
 
 	@BeforeEach
 	protected void setUp() throws Exception {
-		cm = new CoffeeMaker();
+
+		//inventory is initalized with 15 units of each property (milk, choc etc...)
+		inv = new Inventory();
 
 		super.setUp();
 	}
 
 	@Test
 	public void testAddChocolate() {
+		try {
+			String increment = "1";
+			inv.addChocolate(increment);
+
+			int expected = 16;
+
+			//Oracle: Check if chocolate value has increased by 1 (from 15)
+			assertEquals(expected, inv.getChocolate());			
+		} catch (InventoryException e) {
+			fail("Exception should not be thrown.");
+		}
 
 	}
 

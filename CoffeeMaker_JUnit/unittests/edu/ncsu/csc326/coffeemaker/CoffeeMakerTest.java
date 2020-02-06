@@ -76,10 +76,6 @@ public class CoffeeMakerTest extends TestCase {
 			//success if thrown
 		}
 	}
-
-	public void testCheckInventory(){
-		
-	}
 	
 	public void testMakeCoffee() {
 		cm.addRecipe(r1);

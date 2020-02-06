@@ -1,6 +1,7 @@
 package edu.ncsu.csc326.coffeemaker;
 
-import junit.framework.TestCase;
+//import JUNIT 5
+import org.junit.*;
 import java.util.Arrays;
 import java.util.*;
 
@@ -12,7 +13,7 @@ import java.util.*;
  *
  *         Unit tests for Main Functionality
  */
-public class RecipeBookTest extends TestCase {
+public class RecipeBookTest {
 
 	private CoffeeMaker cm;
 	private Recipe r1;
