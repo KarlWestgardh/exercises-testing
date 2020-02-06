@@ -18,9 +18,9 @@ public class Inventory {
      */
     public Inventory() {
     	setCoffee(15);
-    	setMilk(15);
-    	setSugar(15);
-    	setChocolate(15);
+		setMilk(15);
+		setSugar(15);
+		setChocolate(15);
     }
     
     /**

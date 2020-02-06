@@ -191,7 +191,7 @@ public class Main {
 	    	    
 	    //Read in amt chocolate
 	    String chocolateString = inputOutput("\nPlease enter the units of chocolate to add: ");
-	    	    
+
         try {
         	coffeeMaker.addInventory(coffeeString, milkString, sugarString, chocolateString);
         	System.out.println("Inventory successfully added");
