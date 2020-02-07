@@ -4,9 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RecipeTest {
 
@@ -76,7 +74,7 @@ class RecipeTest {
         input = "ABC";
 
         //Oracle: test if invalid makes method throw exception
-        assertThrows(InventoryException.class, () => r.setAmtChocolate(input));
+        assertThrows(InventoryException.class, () -> r.setAmtChocolate(input));
     }
 
     @Test
@@ -109,7 +107,7 @@ class RecipeTest {
         input = "ABC";
 
         //Oracle: test if invalid makes method throw exception
-        assertThrows(InventoryException.class, () => r.setAmtSugar(input));
+        assertThrows(InventoryException.class, () -> r.setAmtSugar(input));
     }
 
     @Test
@@ -142,7 +140,7 @@ class RecipeTest {
         input = "ABC";
 
         //Oracle: test if invalid makes method throw exception
-        assertThrows(InventoryException.class, () => r.setAmtMilk(input));
+        assertThrows(InventoryException.class, () -> r.setAmtMilk(input));
     }
     @Test
     void testSetAmtCoffee() {
@@ -174,7 +172,7 @@ class RecipeTest {
         input = "ABC";
 
         //Oracle: test if invalid makes method throw exception
-        assertThrows(InventoryException.class, () => r.setAmtCoffee(input));
+        assertThrows(InventoryException.class, () -> r.setAmtCoffee(input));
     }
 
     @Test
@@ -207,7 +205,7 @@ class RecipeTest {
         input = "ABC";
 
         //Oracle: test if invalid makes method throw exception
-        assertThrows(InventoryException.class, () => r.setPrice(input));
+        assertThrows(InventoryException.class, () -> r.setPrice(input));
     }
 
     @Test
