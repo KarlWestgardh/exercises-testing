@@ -1,9 +1,10 @@
 import exceptions.InventoryException;
+import exceptions.RecipeException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -28,7 +29,11 @@ class InventoryTest {
         //create a recipe for testing
         r = new Recipe();
         r.setName("x");
-        r.setPrice("1");
+        try {
+            r.setPrice("1");
+        } catch (RecipeException e) {
+            e.printStackTrace();
+        }
 
         //initalization of expectedNum
         expectedNum = 16;
@@ -41,7 +46,7 @@ class InventoryTest {
         //reset variables
         inv = null;
         r = null;
-        expectedNum = null;
+        expectedNum = 0;
         num = null;
 
     }
@@ -131,10 +136,15 @@ class InventoryTest {
     void testEnoughIngredientsWithInputUnderThreshold() {
 
         //assign values to recipe under threshold (15 per ingredient)
-        r.setAmtChocolate("10");
-        r.setAmtCoffee("10");
-        r.setAmtMilk("10");
-        r.setAmtSugar("10");
+        try {
+            r.setAmtChocolate("10");
+            r.setAmtCoffee("10");
+            r.setAmtMilk("10");
+            r.setAmtSugar("10");
+        } catch (RecipeException e) {
+            e.printStackTrace();
+        }
+
 
         //expect the function to return true considering under threshold (15 > 10)
         expectedBool = true;
@@ -155,10 +165,15 @@ class InventoryTest {
     void testEnoughIngredientsWithInputOverThreshold() {
 
             //assign most values to recipe under threshold (15 per ingredient)
+        try {
             r.setAmtChocolate("20");
             r.setAmtCoffee("10");
             r.setAmtMilk("20");
             r.setAmtSugar("10");
+        } catch (RecipeException e) {
+            e.printStackTrace();
+        }
+
     
             //expect the function to return false considering over threshold (15 < 20)
             expectedBool = false;
@@ -179,10 +194,15 @@ class InventoryTest {
     void testUseIngredients() {
 
         //assign most values to recipe under threshold (15 per ingredient)
-        r.setAmtChocolate("1");
-        r.setAmtCoffee("1");
-        r.setAmtMilk("1");
-        r.setAmtSugar("1");
+
+        try {
+            r.setAmtChocolate("1");
+            r.setAmtCoffee("1");
+            r.setAmtMilk("1");
+            r.setAmtSugar("1");
+        } catch (RecipeException e) {
+            e.printStackTrace();
+        }
 
         //expectedNum is 14 since function decreases inventory by recipe field values
         expectedNum = 14;
