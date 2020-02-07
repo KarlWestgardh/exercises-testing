@@ -80,8 +80,8 @@ class RecipeBookTest {
         rb.addRecipe(r);
 
         for (Recipe recipe : rb.getRecipes()) {
-            if(recipe!=null){
-                if (!hset.add(recipe) ) {
+            if (recipe != null) {
+                if (!hset.add(recipe)) {
                     fail("Found duplicates in recipebook");
                 }
             }
@@ -176,14 +176,14 @@ class RecipeBookTest {
 
         //Oracle: check if field values is equal
         assertAll("Edit recipe",
-            ()-> assertEquals(r2.getAmtChocolate(),rb.getRecipes()[0].getAmtChocolate()),
-            ()-> assertEquals(r2.getAmtCoffee(),rb.getRecipes()[0].getAmtCoffee()),
-            ()-> assertEquals(r2.getAmtMilk(),rb.getRecipes()[0].getAmtMilk()),
-            ()-> assertEquals(r2.getAmtSugar(),rb.getRecipes()[0].getAmtSugar()),
-            ()-> assertEquals(r2.getPrice(),rb.getRecipes()[0].getPrice()),
-            ()-> assertEquals(r2.getName(),rb.getRecipes()[0].getName())
+                () -> assertEquals(r2.getAmtChocolate(), rb.getRecipes()[0].getAmtChocolate()),
+                () -> assertEquals(r2.getAmtCoffee(), rb.getRecipes()[0].getAmtCoffee()),
+                () -> assertEquals(r2.getAmtMilk(), rb.getRecipes()[0].getAmtMilk()),
+                () -> assertEquals(r2.getAmtSugar(), rb.getRecipes()[0].getAmtSugar()),
+                () -> assertEquals(r2.getPrice(), rb.getRecipes()[0].getPrice()),
+                () -> assertEquals(r2.getName(), rb.getRecipes()[0].getName())
         );
-        
+
 
     }
 }
