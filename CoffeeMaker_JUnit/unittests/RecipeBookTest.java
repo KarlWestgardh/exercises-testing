@@ -80,9 +80,12 @@ class RecipeBookTest {
         rb.addRecipe(r);
 
         for (Recipe recipe : rb.getRecipes()) {
-            if (!hset.add(recipe)) {
-                fail("Found duplicates in recipebook");
+            if (recipe != null) {
+                if (!hset.add(recipe)) {
+                    fail("Found duplicates in recipebook");
+                }
             }
+
         }
         // SUCCESS
     }
@@ -93,29 +96,35 @@ class RecipeBookTest {
         // add recipe to recipeBook
         rb.addRecipe(r);
 
-        // change name of recipe
+        // change name of recipe and instantiate new due to avoid reference problems
+        r = new Recipe();
         r.setName("y");
 
         // add second recipe
         rb.addRecipe(r);
 
-        // change name of recipe
+        // change name of recipe and instantiate new due to avoid reference problems
+        r = new Recipe();
         r.setName("z");
 
         // add third recipe
         rb.addRecipe(r);
 
-        // change name of recipe
+        // change name of recipe and instantiate new due to avoid reference problems
+        r = new Recipe();
         r.setName("a");
 
         // add fourth recipe
         rb.addRecipe(r);
 
-        // change name of recipe
+        // change name of recipe and instantiate new due to avoid reference problems
+        r = new Recipe();
         r.setName("b");
 
         // add a fifth recipe (should return false)
         actual = rb.addRecipe(r);
+
+        System.out.println(actual);
 
         // set expected value
         expected = false;
@@ -167,14 +176,14 @@ class RecipeBookTest {
 
         //Oracle: check if field values is equal
         assertAll("Edit recipe",
-            ()-> assertEquals(r2.getAmtChocolate(),rb.getRecipes()[0].getAmtChocolate()),
-            ()-> assertEquals(r2.getAmtCoffee(),rb.getRecipes()[0].getAmtCoffee()),
-            ()-> assertEquals(r2.getAmtMilk(),rb.getRecipes()[0].getAmtMilk()),
-            ()-> assertEquals(r2.getAmtSugar(),rb.getRecipes()[0].getAmtSugar()),
-            ()-> assertEquals(r2.getPrice(),rb.getRecipes()[0].getPrice()),
-            ()-> assertEquals(r2.getName(),rb.getRecipes()[0].getName())
+                () -> assertEquals(r2.getAmtChocolate(), rb.getRecipes()[0].getAmtChocolate()),
+                () -> assertEquals(r2.getAmtCoffee(), rb.getRecipes()[0].getAmtCoffee()),
+                () -> assertEquals(r2.getAmtMilk(), rb.getRecipes()[0].getAmtMilk()),
+                () -> assertEquals(r2.getAmtSugar(), rb.getRecipes()[0].getAmtSugar()),
+                () -> assertEquals(r2.getPrice(), rb.getRecipes()[0].getPrice()),
+                () -> assertEquals(r2.getName(), rb.getRecipes()[0].getName())
         );
-        
+
 
     }
 }

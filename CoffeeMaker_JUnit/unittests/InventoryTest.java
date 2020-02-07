@@ -4,14 +4,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 class InventoryTest {
 
     private Inventory inv;
     private String num;
+    private String letter;
     private Recipe r;
     private int expectedNum;
     private boolean expectedBool;
@@ -25,6 +24,7 @@ class InventoryTest {
 
         //initalization of a variable for test
         num = "1";
+        letter = "a";
 
         //create a recipe for testing
         r = new Recipe();
@@ -48,6 +48,7 @@ class InventoryTest {
         r = null;
         expectedNum = 0;
         num = null;
+        letter = null;
 
     }
 
@@ -62,13 +63,23 @@ class InventoryTest {
             int chocoInInventory = inv.getChocolate();
 
             //Oracle: check that 1 unit of choc has been added to inventory
-            assertEquals(expectedNum,chocoInInventory);
+            assertEquals(expectedNum, chocoInInventory);
 
             //SUCCESS
 
         } catch (InventoryException e) {
-            fail("Should not throw exception");
+            fail(e.getMessage());
         }
+
+    }
+
+    @Test
+    void testAddChocolateToInventoryWithWrongInput() {
+
+
+        //add 1 unit of sugar to inventory
+        assertThrows(InventoryException.class, () -> inv.addChocolate(letter));
+        //SUCCESS
 
     }
 
@@ -83,13 +94,23 @@ class InventoryTest {
             int coffeeInInventory = inv.getCoffee();
 
             //Oracle: check that 1 unit of coffee has been added to inventory
-            assertEquals(expectedNum,coffeeInInventory);
+            assertEquals(expectedNum, coffeeInInventory);
 
             //SUCCESS
 
         } catch (InventoryException e) {
-            fail("Should not throw exception");
+            fail(e.getMessage());
         }
+    }
+
+    @Test
+    void testAddCoffeeToInventoryWithWrongInput() {
+
+
+        //add 1 unit of sugar to inventory
+        assertThrows(InventoryException.class, () -> inv.addCoffee(letter));
+        //SUCCESS
+
     }
 
     @Test
@@ -103,17 +124,27 @@ class InventoryTest {
             int milkInInventory = inv.getMilk();
 
             //Oracle: check that 1 unit of milk has been added to inventory
-            assertEquals(expectedNum,milkInInventory);
+            assertEquals(expectedNum, milkInInventory);
 
             //SUCCESS
 
         } catch (InventoryException e) {
-            fail("Should not throw exception");
+            fail(e.getMessage());
         }
     }
 
     @Test
-    void testAddSugarToInventory() {        
+    void testAddMilkToInventoryWithWrongInput() {
+
+
+        //add 1 unit of sugar to inventory
+        assertThrows(InventoryException.class, () -> inv.addMilk(letter));
+        //SUCCESS
+
+    }
+
+    @Test
+    void testAddSugarToInventory() {
 
         try {
             //add 1 unit of sugar to inventory
@@ -123,13 +154,23 @@ class InventoryTest {
             int sugarInInventory = inv.getSugar();
 
             //Oracle: check that 1 unit of sugar has been added to inventory
-            assertEquals(expectedNum,sugarInInventory);
+            assertEquals(expectedNum, sugarInInventory);
 
             //SUCCESS
 
         } catch (InventoryException e) {
             fail(e.getMessage());
         }
+    }
+
+    @Test
+    void testAddSugarToInventoryWithWrongInput() {
+
+
+        //add 1 unit of sugar to inventory
+        assertThrows(InventoryException.class, () -> inv.addSugar(letter));
+        //SUCCESS
+
     }
 
     @Test
@@ -152,7 +193,7 @@ class InventoryTest {
 
             //Oracle: Validate expected value with actual value
             assertEquals(expectedBool, actualBool);
-            
+
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -161,7 +202,7 @@ class InventoryTest {
     @Test
     void testEnoughIngredientsWithInputOverThreshold() {
 
-            //assign most values to recipe under threshold (15 per ingredient)
+        //assign most values to recipe under threshold (15 per ingredient)
         try {
             r.setAmtChocolate("20");
             r.setAmtCoffee("10");
@@ -171,20 +212,20 @@ class InventoryTest {
             e.getMessage();
         }
 
-    
-            //expect the function to return false considering over threshold (15 < 20)
-            expectedBool = false;
-            
-            try {
-                //check if inventory has enough ingredients from recipe r
-                actualBool = inv.enoughIngredients(r);
-    
-                //Oracle: Validate expected value with actual value
-                assertEquals(expectedBool, actualBool);
-                
-            } catch (Exception e) {
-                fail(e.getMessage());
-            }
+
+        //expect the function to return false considering over threshold (15 < 20)
+        expectedBool = false;
+
+        try {
+            //check if inventory has enough ingredients from recipe r
+            actualBool = inv.enoughIngredients(r);
+
+            //Oracle: Validate expected value with actual value
+            assertEquals(expectedBool, actualBool);
+
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
@@ -203,22 +244,24 @@ class InventoryTest {
 
         //expectedNum is 14 since function decreases inventory by recipe field values
         expectedNum = 14;
-        
+
         try {
             //call to function useIngredients
             inv.useIngredients(r);
 
             //Oracle: Validate expected value with actual value, field by field
             assertAll("Ingredients",
-                ()->assertEquals(expectedNum,inv.getChocolate()),
-                ()->assertEquals(expectedNum,inv.getCoffee()),
-                ()->assertEquals(expectedNum,inv.getMilk()),
-                ()->assertEquals(expectedNum,inv.getSugar())
+                    () -> assertEquals(expectedNum, inv.getChocolate()),
+                    () -> assertEquals(expectedNum, inv.getCoffee()),
+                    () -> assertEquals(expectedNum, inv.getMilk()),
+                    () -> assertEquals(expectedNum, inv.getSugar())
             );
-            
+
         } catch (Exception e) {
             fail(e.getMessage());
 
         }
     }
+
+
 }
