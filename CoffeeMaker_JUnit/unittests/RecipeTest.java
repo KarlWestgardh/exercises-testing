@@ -41,6 +41,11 @@ class RecipeTest {
 
         //reset variables
         r = null;
+        input = null;
+        expectedNum = null;
+        actualNum = null;
+        expectedStr = null;
+        actualStr = null;
 
     }
 
