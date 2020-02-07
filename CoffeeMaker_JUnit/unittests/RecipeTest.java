@@ -79,7 +79,7 @@ class RecipeTest {
         input = "ABC";
 
         //Oracle: test if invalid makes method throw exception
-        assertThrows(InventoryException.class, () -> r.setAmtChocolate(input));
+        assertThrows(RecipeException.class, () -> r.setAmtChocolate(input));
     }
 
     @Test
@@ -112,7 +112,7 @@ class RecipeTest {
         input = "ABC";
 
         //Oracle: test if invalid makes method throw exception
-        assertThrows(InventoryException.class, () -> r.setAmtSugar(input));
+        assertThrows(RecipeException.class, () -> r.setAmtSugar(input));
     }
 
     @Test
@@ -145,7 +145,7 @@ class RecipeTest {
         input = "ABC";
 
         //Oracle: test if invalid makes method throw exception
-        assertThrows(InventoryException.class, () -> r.setAmtMilk(input));
+        assertThrows(RecipeException.class, () -> r.setAmtMilk(input));
     }
     @Test
     void testSetAmtCoffee() {
@@ -177,7 +177,7 @@ class RecipeTest {
         input = "ABC";
 
         //Oracle: test if invalid makes method throw exception
-        assertThrows(InventoryException.class, () -> r.setAmtCoffee(input));
+        assertThrows(RecipeException.class, () -> r.setAmtCoffee(input));
     }
 
     @Test
@@ -210,7 +210,7 @@ class RecipeTest {
         input = "ABC";
 
         //Oracle: test if invalid makes method throw exception
-        assertThrows(InventoryException.class, () -> r.setPrice(input));
+        assertThrows(RecipeException.class, () -> r.setPrice(input));
     }
 
     @Test
@@ -220,7 +220,7 @@ class RecipeTest {
         input = "x";
 
         //change amount of recipe
-        
+
             r.setName(input);
 
 
