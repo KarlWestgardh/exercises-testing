@@ -1,11 +1,15 @@
-import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
+import exceptions.RecipeException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class RecipeBookTest {
 
@@ -25,14 +29,19 @@ class RecipeBookTest {
         // create a new recipe
         r = new Recipe();
         r.setName("x");
-        r.setAmtChocolate("1");
-        r.setAmtCoffee("1");
-        r.setAmtMilk("1");
-        r.setAmtSugar("1");
-        r.setPrice("1");
+        try {
+            r.setAmtChocolate("1");
+            r.setAmtCoffee("1");
+            r.setAmtMilk("1");
+            r.setAmtSugar("1");
+            r.setPrice("1");
+        } catch (RecipeException e) {
+            e.printStackTrace();
+        }
+
 
         // init a hashset for the tests
-        hset = new HashSet<Recipe>();
+        hset = new HashSet<>();
 
     }
 
@@ -42,7 +51,9 @@ class RecipeBookTest {
         // reset variables
         rb = null;
         r = null;
+        r2 = null;
         expected = null;
+        hset = null;
     }
 
     @Test
@@ -69,7 +80,7 @@ class RecipeBookTest {
         rb.addRecipe(r);
 
         for (Recipe recipe : rb.getRecipes()) {
-            if (hset.add(recipe) == false) {
+            if (!hset.add(recipe)) {
                 fail("Found duplicates in recipebook");
             }
         }
@@ -140,23 +151,28 @@ class RecipeBookTest {
         //create a second recipe for the test
         r2 = new Recipe();
         r2.setName("z");
-        r2.setAmtChocolate("2");
-        r2.setAmtCoffee("2");
-        r2.setAmtMilk("2");
-        r2.setAmtSugar("2");
-        r2.setPrice("2");
+        try {
+            r2.setAmtChocolate("2");
+            r2.setAmtCoffee("2");
+            r2.setAmtMilk("2");
+            r2.setAmtSugar("2");
+            r2.setPrice("2");
+        } catch (RecipeException e) {
+            e.printStackTrace();
+        }
+
 
         //change the recipe of the first position (r) to the values of the new recipe (r2)
         rb.editRecipe(0, r2);
 
         //Oracle: check if field values is equal
         assertAll("Edit recipe",
-            ()-> assertEquals(r2.getAmtChocolate(),rb.getRecipes[0].getAmtChocolate()),
-            ()-> assertEquals(r2.getAmtCoffee(),rb.getRecipes[0].getAmtCoffee()),
-            ()-> assertEquals(r2.getAmtMilk(),rb.getRecipes[0].getAmtMilk()),
-            ()-> assertEquals(r2.getAmtSugar(),rb.getRecipes[0].getAmtSugar()),
-            ()-> assertEquals(r2.getPrice(),rb.getRecipes[0].getPrice()),
-            ()-> assertEquals(r2.getName(),rb.getRecipes[0].getName())
+            ()-> assertEquals(r2.getAmtChocolate(),rb.getRecipes()[0].getAmtChocolate()),
+            ()-> assertEquals(r2.getAmtCoffee(),rb.getRecipes()[0].getAmtCoffee()),
+            ()-> assertEquals(r2.getAmtMilk(),rb.getRecipes()[0].getAmtMilk()),
+            ()-> assertEquals(r2.getAmtSugar(),rb.getRecipes()[0].getAmtSugar()),
+            ()-> assertEquals(r2.getPrice(),rb.getRecipes()[0].getPrice()),
+            ()-> assertEquals(r2.getName(),rb.getRecipes()[0].getName())
         );
         
 
