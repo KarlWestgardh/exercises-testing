@@ -73,7 +73,7 @@ class RecipeTest {
     }
 
     @Test
-    void testSetAmtChocolateException() {
+    void testSetAmtChocolateWithWrongInput() {
 
         //change input to invalid value
         input = "ABC";
@@ -106,7 +106,7 @@ class RecipeTest {
     }
 
     @Test
-    void testSetAmtSugarException() {
+    void testSetAmtSugarWithWrongInput() {
 
         //change input to invalid value
         input = "ABC";
@@ -139,7 +139,7 @@ class RecipeTest {
     }
 
     @Test
-    void testSetAmtMilkException() {
+    void testSetAmtMilkWithWrongInput() {
 
         //change input to invalid value
         input = "ABC";
@@ -171,7 +171,7 @@ class RecipeTest {
     }
 
     @Test
-    void testSetAmtCoffeeException() {
+    void testSetAmtCoffeeWithWrongInput() {
 
         //change input to invalid value
         input = "ABC";
@@ -204,7 +204,7 @@ class RecipeTest {
     }
 
     @Test
-    void testSetPriceException() {
+    void testSetPriceWithWrongInput() {
 
         //change input to invalid value
         input = "ABC";
