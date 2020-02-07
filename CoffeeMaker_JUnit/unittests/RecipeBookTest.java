@@ -135,7 +135,7 @@ class RecipeBookTest {
     }
 
     @Test
-    void deleteRecipe() {
+    void testDeleteRecipe() {
 
         // add recipe to recipeBook
         rb.addRecipe(r);
@@ -152,7 +152,7 @@ class RecipeBookTest {
     }
 
     @Test
-    void editRecipe() {
+    void testEditRecipe() {
 
         //add recipe to recipeBook
         rb.addRecipe(r);
