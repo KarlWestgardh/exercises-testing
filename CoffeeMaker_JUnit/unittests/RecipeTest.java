@@ -42,8 +42,8 @@ class RecipeTest {
         //reset variables
         r = null;
         input = null;
-        expectedNum = null;
-        actualNum = null;
+        expectedNum = 0;
+        actualNum = 0;
         expectedStr = null;
         actualStr = null;
 
@@ -220,11 +220,9 @@ class RecipeTest {
         input = "x";
 
         //change amount of recipe
-        try {
-            r.setName(input);            
-        } catch (RecipeException e) {
-            e.getMessage();
-        }
+        
+            r.setName(input);
+
 
         //set value of expected
         expectedStr = "x";
