@@ -28,11 +28,11 @@ class InventoryTest {
 
         //create a recipe for testing
         r = new Recipe();
-        r.setName("x");
         try {
+            r.setName("x");
             r.setPrice("1");
         } catch (RecipeException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
 
         //initalization of expectedNum
@@ -128,7 +128,7 @@ class InventoryTest {
             //SUCCESS
 
         } catch (InventoryException e) {
-            fail("Should not throw exception");
+            fail(e.getMessage());
         }
     }
 
@@ -142,13 +142,10 @@ class InventoryTest {
             r.setAmtMilk("10");
             r.setAmtSugar("10");
         } catch (RecipeException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
-
-
         //expect the function to return true considering under threshold (15 > 10)
         expectedBool = true;
-        
         try {
             //check if inventory has enough ingredients from recipe r
             actualBool = inv.enoughIngredients(r);
@@ -171,7 +168,7 @@ class InventoryTest {
             r.setAmtMilk("20");
             r.setAmtSugar("10");
         } catch (RecipeException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
 
     
@@ -201,14 +198,14 @@ class InventoryTest {
             r.setAmtMilk("1");
             r.setAmtSugar("1");
         } catch (RecipeException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
 
         //expectedNum is 14 since function decreases inventory by recipe field values
         expectedNum = 14;
         
         try {
-            //call to function useIngredentis
+            //call to function useIngredients
             inv.useIngredients(r);
 
             //Oracle: Validate expected value with actual value, field by field
@@ -221,6 +218,7 @@ class InventoryTest {
             
         } catch (Exception e) {
             fail(e.getMessage());
+
         }
     }
 }
