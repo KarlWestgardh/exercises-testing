@@ -8,7 +8,7 @@
         b = _tmp;     \
     }
 
-int cur_count = 0, alloc_count = 0, total_count = 0, num_elems = 0;
+int cur_count = -1, alloc_count = 0, total_count = 0, num_elems = 0;
 int *counts, *psums, *elems;
 
 void initialize(int n, FILE *fptr)
