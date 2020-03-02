@@ -30,7 +30,7 @@ public class RecipeBook {
         //find out otherwise
         boolean exists = false;
         //Check that recipe doesn't already exist in array
-        for (int i = 0; i < recipeArray.length; i++) {
+        for (int i = 0 ; i < recipeArray.length; i++) {
             if (r.equals(recipeArray[i])) {
                 exists = true;
             }
@@ -40,7 +40,7 @@ public class RecipeBook {
         boolean added = false;
         //Check for first empty spot in array
         if (!exists) {
-            for (int i = 0; i < recipeArray.length && !added; i++) {
+            for (int i = 0; i < recipeArray.length && !added; i ++) {
                 if (recipeArray[i] == null) {
                     recipeArray[i] = r;
                     added = true;

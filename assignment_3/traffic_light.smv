@@ -1,0 +1,82 @@
+VAR
+    timer:0;
+    H_Traffic_light:{Red, Yellow, Green};
+    V_Traffic_light:{Red, Yellow, Green};
+    H_Pedestrian_light:{Walk, Wait};
+    V_Pedestrian_light:{Walk, Wait};
+    H_Walk_Button:{Pressed, Idle};
+    V_Walk_Button:{Pressed, Idle};
+    H_Vehicle_Sensor:{Sensed, Not_sensed};
+    V_Vehicle_Sensor:{Sensed, Not_sensed};
+    Emr_Vehicle_Sensor:{Sensed, Not_sensed};
+
+ASSIGN
+    init(H_Traffic_light) := Red;
+    next(H_Traffic_light) := case
+        H_Traffic_light=Yellow & ((V_Vehicle_Sensor | V_Walk_Button) & timer >= 5) | Emr_Vehicle_Sensor=Sensed: Red;
+        H_Traffic_light=Green & (V_Vehicle_Sensor=Sensed | V_Walk_Button=Pressed) & timer >= 30: Yellow;
+        H_Traffic_light=Yellow & timer >= 5: Green;
+        H_Traffic_light=Red & timer >= 5: Yellow;
+        TRUE: {Red};
+    esac;
+
+    init(V_Traffic_light) := Red;
+    next(V_Traffic_light) := case
+        V_Traffic_light=Yellow & ((H_Vehicle_Sensor=Sensed | H_Walk_Button=Pressed ) & timer >= 5) Emr_Vehicle_Sensor=Sensed : Red;
+        V_Traffic_light=Green & (H_Vehicle_Sensor=Sensed | H_Walk_Button=Pressed ) & timer >= 30: Yellow;
+        V_Traffic_light=Yellow & timer >= 5: Green;
+        V_Traffic_light=Red & timer >= 5: Yellow;
+        TRUE: {Red};
+    esac;
+
+    init(H_Pedestrian_light) := Wait;
+    next(H_Pedestrian_light) := case 
+        H_Pedestrian_light=Wait & H_Walk_Button=Pressed & timer >= 5: Walk;
+        H_Pedestrian_light=Walk & H_Walk_Button=Unpressed & timer >= 5: Wait;   
+        TRUE: {Wait};
+    esac;
+
+    init(V_Pedestrian_light) := Wait;
+    next(V_Pedestrian_light) := case    
+        V_Pedestrian_light=Wait & V_Walk_Button=Pressed & timer >= 5: Walk;
+        V_Pedestrian_light=Walk & V_Walk_Button=Unpressed & timer >= 5: Wait;  
+        TRUE: {Wait};
+    esac;
+
+    init(H_Walk_Button) := Idle;
+    next(H_Walk_Button) := case  
+        H_Walk_Button=Idle : Pressed; 
+        H_Walk_Button=Pressed : Idle; 
+        TRUE: {Idle};
+    esac;
+
+    init(V_Walk_Button) := Unpressed;
+    next(V_Walk_Button) := case  
+        V_Walk_Button=Idle : Pressed; 
+        V_Walk_Button=Pressed : Idle;   
+        TRUE: {Idle};
+    esac;
+
+    init(H_Vehicle_Sensor) := Not_sensed;
+    next(H_Vehicle_Sensor) := case 
+        H_Vehicle_Sensor=Not_sensed: Sensed;
+        H_Vehicle_Sensor=Sensed: Not_sensed;
+        TRUE: {Not_sensed};
+    esac;
+
+    init(V_Vehicle_Sensor) := Not_sensed;
+    next(V_Vehicle_Sensor) := case  
+        V_Vehicle_Sensor=Not_sensed: Sensed;
+        V_Vehicle_Sensor=Sensed: Not_sensed;
+        TRUE: {Not_sensed};  
+    esac;
+
+    init(Emr_Vehicle_Sensor) := Not_sensed;
+    next(Emr_Vehicle_Sensor) := case    
+        Emr_Vehicle_Sensor:Not_sensed: Sensed;
+        Emr_Vehicle_Sensor: Sensed: Not_sensed;
+        TRUE:
+    esac;
+    
+    
+
